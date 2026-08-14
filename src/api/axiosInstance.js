@@ -27,7 +27,7 @@ const processQueue = (error, token = null) => {
     failedQueue = [];
 };
 
-const EXCLUDED_URLS = ["/auth/login", "/auth/refresh", "/auth/logout", "/auth/register"];
+const EXCLUDED_URLS = ["/api/auth/login", "/api/auth/refresh", "/api/auth/logout", "/api/auth/register"];
 
 axiosInstance.interceptors.response.use(
     (response) => response,
@@ -61,7 +61,7 @@ axiosInstance.interceptors.response.use(
 
             try {
                 // FIX: axiosInstance use karo, aur direct path do (function nahi)
-                const { data } = await axiosInstance.post("/auth/refresh", { refreshToken });
+                const { data } = await axiosInstance.post("/api/auth/refresh", { refreshToken });
 
                 const newAccessToken = data.accessToken;
                 tokenStorage.setTokens(newAccessToken, data.refreshToken || refreshToken);

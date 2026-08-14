@@ -21,8 +21,8 @@ import Publications from './components/pages/publications/Publications';
 import Events from './components/pages/events/Events';
 import Volunteering from './components/pages/volunteering/Volunteering';
 import Hobbies from './components/pages/hobbies/Hobbies';
-import Resume from './components/pages/resumes/Resumes';
 import Languages from './components/pages/languages/Languages';
+import Resumes from './components/pages/resumes/Resumes';
 
 
 function App() {
@@ -55,7 +55,7 @@ function App() {
         <Route path="/volunteering" element={<Volunteering />} />
         <Route path="/languages" element={<Languages />} />
         <Route path="/interests" element={<Hobbies />} />
-        <Route path="/resume" element={<Resume />} />
+        <Route path="/resume" element={<Resumes />} />
       </Route>
     </Routes>
   )

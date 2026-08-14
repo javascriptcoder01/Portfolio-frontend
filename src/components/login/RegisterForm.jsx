@@ -4,13 +4,13 @@ import GoogleIcon from "./GoogleIcon";
 
 const RegisterForm = ({ toggleForm, username, setUsername, email, setEmail, password, setPassword, error, handleSubmit }) => {
 
-    // DEMO GOOGLE LOGIN HANDLER (testing purpose only)
     const handleGoogleLogin = () => {
         console.log("Google login clicked - demo only, real OAuth abhi wire nahi hai");
     };
+
     return (
-        <form className="transition-opacity duration-300">
-            <h2 className="text-white text-[23px] mb-5">Register</h2>
+        <form className="transition-opacity duration-300" onSubmit={handleSubmit}>
+            <h2 className="text-white text-lg sm:text-[23px] mb-4 sm:mb-5">Register</h2>
 
             <div className="mb-2">
                 <label className="block text-xs text-[#ff5fa2] mb-1">Username</label>
@@ -63,13 +63,14 @@ const RegisterForm = ({ toggleForm, username, setUsername, email, setEmail, pass
                 </div>
             </div>
 
+            {error && <p className="text-sm text-red-500">{error}</p>}
+
             <button className="w-full mt-1.5 p-3 border-none rounded-full bg-gradient-to-r from-[#ff2e88] to-[#b3006b] text-white font-bold tracking-wide cursor-pointer shadow-[0_0_12px_rgba(255,20,110,0.7)] transition duration-300 hover:brightness-110">
                 Register
             </button>
 
-            {/* GOOGLE LOGIN BUTTON */}
             <div className="flex flex-col justify-center items-center gap-3 p-2">
-                <p className="text-gray-400 tracking-tighter">----------- or -----------</p>
+                <p className="text-gray-400 tracking-tighter text-xs sm:text-sm">----------- or -----------</p>
                 <button
                     type="button"
                     onClick={handleGoogleLogin}

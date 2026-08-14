@@ -2,15 +2,15 @@
 
 import GoogleIcon from "./GoogleIcon";
 
-const LoginForm = ({ email, setEmail, password, setPassword, error, handleSubmit, toggleForm }) => {
+const LoginForm = ({ form, setForm, loading, error, handleSubmit, toggleForm }) => {
 
-    // DEMO GOOGLE LOGIN HANDLER (testing purpose only)
     const handleGoogleLogin = () => {
         console.log("Google login clicked - demo only, real OAuth abhi wire nahi hai");
     };
+
     return (
         <form className="transition-opacity duration-300" onSubmit={handleSubmit}>
-            <h2 className="text-white text-[23px] mb-5">Sign In</h2>
+            <h2 className="text-white text-lg sm:text-[23px] mb-4 sm:mb-5">Sign In</h2>
 
             <div className="mb-2">
                 <label className="block text-xs text-[#ff5fa2] mb-1">Username</label>
@@ -18,8 +18,8 @@ const LoginForm = ({ email, setEmail, password, setPassword, error, handleSubmit
                     <input
                         type="text"
                         placeholder="Enter username"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        value={form.email}
+                        onChange={(e) => setForm({ ...form, email: e.target.value })}
                         className="w-full bg-transparent border-none outline-none text-white text-sm pr-[26px] pb-2 pt-1"
                     />
                     <svg viewBox="0 0 24 24" className="absolute right-0 top-0.5 w-4 h-4 fill-none stroke-[1.6]">
@@ -35,8 +35,8 @@ const LoginForm = ({ email, setEmail, password, setPassword, error, handleSubmit
                     <input
                         type="password"
                         placeholder="••••••••"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        value={form.password}
+                        onChange={(e) => setForm({ ...form, password: e.target.value })}
                         className="w-full bg-transparent border-none outline-none text-white text-sm pr-[26px] pb-2 pt-1"
                     />
                     <svg viewBox="0 0 24 24" className="absolute right-0 top-0.5 w-4 h-4 fill-none stroke-[1.6]">
@@ -52,9 +52,8 @@ const LoginForm = ({ email, setEmail, password, setPassword, error, handleSubmit
                 Sign In
             </button>
 
-            {/* GOOGLE LOGIN BUTTON */}
             <div className="flex flex-col justify-center items-center gap-3 p-2">
-                <p className="text-gray-400 tracking-tighter">----------- or -----------</p>
+                <p className="text-gray-400 tracking-tighter text-xs sm:text-sm">----------- or -----------</p>
                 <button
                     type="button"
                     onClick={handleGoogleLogin}
@@ -64,7 +63,6 @@ const LoginForm = ({ email, setEmail, password, setPassword, error, handleSubmit
                     Sign in with Google
                 </button>
             </div>
-
 
             <p className="text-center mt-3.5 text-xs text-[#ccc]">
                 Don't have an account?{" "}

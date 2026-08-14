@@ -25,8 +25,10 @@ import {
     Contact,
     Trophy,
     BookOpen,
+    FileArchive,
 } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
+import LogoutButton from "../common/LogoutButton";
 
 const menuItems = [
     {
@@ -126,6 +128,11 @@ const menuItems = [
         icon: Lightbulb,
         url: "/interests",
     },
+    {
+        title: "Resume",
+        icon: FileArchive,
+        url: "/resume",
+    },
 
     // SETTINGS
     {
@@ -171,13 +178,6 @@ const Sidebar = ({
     const handleChildClick = (url) => {
         navigate(url);
         setMobileOpen(false);
-    };
-
-    // HANDLE LOGOUT
-    const handleLogout = () => {
-        localStorage.removeItem("isLoggedIn");
-        localStorage.removeItem("userEmail");
-        navigate("/login");
     };
 
     // TEXT sirf tab dikhega jab sidebarOpen = true (icon-only collapse control)
@@ -280,20 +280,7 @@ const Sidebar = ({
             </div>
 
             {/* LOGOUT - fixed at bottom, icon left / text right */}
-            <div className="p-4 border-t shrink-0">
-                <button
-                    onClick={handleLogout}
-                    className={`w-full flex items-center gap-3 p-3 rounded-xl text-red-500 hover:bg-red-100 transition-all
-                        ${!showText && "justify-center"}`}
-                >
-                    <LogOutIcon size={20} className="shrink-0" />
-                    {showText && (
-                        <span className="font-medium whitespace-nowrap">
-                            Logout
-                        </span>
-                    )}
-                </button>
-            </div>
+            <LogoutButton showText={showText} />
         </aside>
     );
 };

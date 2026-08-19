@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import PageContainer from "../../layouts/PageContainer";
-import CrudPage from "../../crud/CrudPage";
-import LanguagesForm from "../../crud/LanguageFrom";
+// import LanguagesForm from "../../crud/LanguageFrom";
 
 
 const Languages = () => {
@@ -11,84 +10,60 @@ const Languages = () => {
     // CREATE
     // =========================================================
 
-    const handleCreate = async (formData) => {
-        const newLanguage = {
-            id: Date.now(),
-            ...formData,
-        };
+    // const handleCreate = async (formData) => {
+    //     const newLanguage = {
+    //         id: Date.now(),
+    //         ...formData,
+    //     };
 
-        setLanguages((prev) => [
-            ...prev,
-            newLanguage,
-        ]);
-    };
+    //     setLanguages((prev) => [
+    //         ...prev,
+    //         newLanguage,
+    //     ]);
+    // };
 
     // =========================================================
     // UPDATE
     // =========================================================
 
-    const handleUpdate = async (id, formData) => {
-        setLanguages((prev) =>
-            prev.map((language) =>
-                language.id === id
-                    ? {
-                        ...language,
-                        ...formData,
-                    }
-                    : language
-            )
-        );
-    };
+    // const handleUpdate = async (id, formData) => {
+    //     setLanguages((prev) =>
+    //         prev.map((language) =>
+    //             language.id === id
+    //                 ? {
+    //                     ...language,
+    //                     ...formData,
+    //                 }
+    //                 : language
+    //         )
+    //     );
+    // };
 
-    // =========================================================
-    // DELETE
-    // =========================================================
-
-    const handleDelete = async (id) => {
-        const confirmed = window.confirm(
-            "Are you sure you want to delete this language?"
-        );
-
-        if (!confirmed) return;
-
-        setLanguages((prev) =>
-            prev.filter(
-                (language) =>
-                    language.id !== id
-            )
-        );
-    };
-
-    // =========================================================
-    // VIEW
-    // =========================================================
-
-    const handleView = (item) => {
-        console.log("View Language:", item);
-    };
 
     // =========================================================
     // FORM
     // =========================================================
 
-    const renderForm = ({
-        item,
-        onSubmit,
-        onCancel,
-    }) => {
-        return (
-            <LanguagesForm
-                item={item}
-                onSubmit={onSubmit}
-                onCancel={onCancel}
-            />
-        );
-    };
+    // const renderForm = ({
+    //     item,
+    //     onSubmit,
+    //     onCancel,
+    // }) => {
+    //     return (
+    //         <LanguagesForm
+    //             item={item}
+    //             onSubmit={onSubmit}
+    //             onCancel={onCancel}
+    //         />
+    //     );
+    // };
 
     return (
         <PageContainer title="Languages">
 
-            <CrudPage
+            <h1>This is Language page</h1>
+
+            {/* <CrudPage
                 title="Languages"
                 description="Manage the languages you know and your proficiency levels."
 
@@ -126,7 +101,7 @@ const Languages = () => {
                 onDelete={handleDelete}
 
                 onView={handleView}
-            />
+            /> */}
 
         </PageContainer>
     );

@@ -1,70 +1,16 @@
 import React, { useState } from "react";
 import PageContainer from "../../layouts/PageContainer";
-import CrudPage from "../../crud/CrudPage";
-import FormField from "../../crud/FormField";
+
 
 
 const Education = () => {
 
-    const [items, setItems] = useState([]);
 
-    const create = async (data) => {
-        setItems([
-            ...items,
-            {
-                ...data,
-                id: Date.now(),
-            },
-        ]);
-    };
-
-    const update = async (id, data) => {
-        setItems(
-            items.map((item) =>
-                item.id === id
-                    ? { ...item, ...data }
-                    : item
-            )
-        );
-    };
-
-    const remove = async (id) => {
-
-        if (!confirm("Delete this education?")) return;
-
-        setItems(
-            items.filter((item) => item.id !== id)
-        );
-    };
 
     return (
         <PageContainer title="Education">
 
-            <CrudPage
-                title="Education"
-                description="Manage your academic background."
-                data={items}
-
-                columns={[
-                    { key: "degree", label: "Degree" },
-                    { key: "institution", label: "Institution" },
-                    { key: "field", label: "Field" },
-                    { key: "startDate", label: "Start" },
-                    { key: "endDate", label: "End" },
-                ]}
-
-                onCreate={create}
-                onUpdate={update}
-                onDelete={remove}
-
-                renderForm={({ item, onSubmit, onCancel }) => (
-                    <EducationForm
-                        initialData={item}
-                        onSubmit={onSubmit}
-                        onCancel={onCancel}
-                    />
-                )}
-            />
+            <h1>This is Education page</h1>
 
         </PageContainer>
     );

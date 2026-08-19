@@ -2,6 +2,9 @@ import { all } from "redux-saga/effects";
 import authSaga from "./authSaga";
 import introductionSaga from "./introductionSaga";
 import aboutSaga from "./aboutSaga";
+import contactSaga from "./contactSaga";
+import skillSaga from './skillSaga';
+import experienceSaga from './experienceSaga';
 
 
 export default function* rootSaga() {
@@ -9,6 +12,9 @@ export default function* rootSaga() {
         authSaga(),
         introductionSaga(),
         aboutSaga(),
+        contactSaga(),
+        skillSaga(),
+        experienceSaga(),
         // aur sagas yahan add karo jaise: userSaga(), authSaga()
     ]);
 };

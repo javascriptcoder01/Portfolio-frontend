@@ -27,7 +27,7 @@ const About = () => {
 
     // FIX: dependency me "active" honi chahiye, taaki backend se naya data aane par form update ho
     useEffect(() => {
-        console.log('Active About Data from About Component: ', active);  // Getting Undefined
+        // console.log('Active About Data from About Component: ', active);  // Getting Undefined
         if (active && mode !== "create") {
             setForm({
                 title: active.title || "",

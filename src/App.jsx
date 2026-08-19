@@ -12,14 +12,12 @@ import Skills from './components/pages/skills/Skills';
 import Experience from './components/pages/experiance/Experience';
 import Projects from './components/pages/projects/Projects';
 import Education from './components/pages/education/Education';
-import Certifications from './components/pages/certifications/Certifications';
 import Achievements from './components/pages/achievement/Achievements';
 import Awards from './components/pages/awards/Awards';
 import Services from './components/pages/services/Services';
 import Testimonials from './components/pages/testimonials/Testimonials';
 import Publications from './components/pages/publications/Publications';
 import Events from './components/pages/events/Events';
-import Volunteering from './components/pages/volunteering/Volunteering';
 import Hobbies from './components/pages/hobbies/Hobbies';
 import Languages from './components/pages/languages/Languages';
 import Resumes from './components/pages/resumes/Resumes';
@@ -45,14 +43,12 @@ function App() {
         <Route path="/experience" element={<Experience />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/education" element={<Education />} />
-        <Route path="/certifications" element={<Certifications />} />
         <Route path="/achievements" element={<Achievements />} />
         <Route path="/awards" element={<Awards />} />
         <Route path="/services" element={<Services />} />
         <Route path="/testimonials" element={<Testimonials />} />
         <Route path="/publications" element={<Publications />} />
         <Route path="/talks-events" element={<Events />} />
-        <Route path="/volunteering" element={<Volunteering />} />
         <Route path="/languages" element={<Languages />} />
         <Route path="/interests" element={<Hobbies />} />
         <Route path="/resume" element={<Resumes />} />

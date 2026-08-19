@@ -77,16 +77,16 @@ const menuItems = [
     },
 
     // CREDENTIALS
-    {
-        title: "Certifications",
-        icon: Award,
-        url: "/certifications",
-    },
-    {
-        title: "Awards & Recognition",
-        icon: Trophy,
-        url: "/awards",
-    },
+    // {
+    //     title: "Certifications",
+    //     icon: Award,
+    //     url: "/certifications",
+    // },
+    // {
+    //     title: "Awards & Recognition",
+    //     icon: Trophy,
+    //     url: "/awards",
+    // },
 
     // SERVICES & SOCIAL PROOF
     {
@@ -101,21 +101,21 @@ const menuItems = [
     },
 
     // CONTENT
-    {
-        title: "Publications & Articles",
-        icon: BookOpen,
-        url: "/publications",
-    },
-    {
-        title: "Talks & Events",
-        icon: Mic2,
-        url: "/talks-events",
-    },
-    {
-        title: "Volunteering",
-        icon: HeartHandshake,
-        url: "/volunteering",
-    },
+    // {
+    //     title: "Publications & Articles",
+    //     icon: BookOpen,
+    //     url: "/publications",
+    // },
+    // {
+    //     title: "Talks & Events",
+    //     icon: Mic2,
+    //     url: "/talks-events",
+    // },
+    // {
+    //     title: "Volunteering",
+    //     icon: HeartHandshake,
+    //     url: "/volunteering",
+    // },
 
     // PERSONAL
     {

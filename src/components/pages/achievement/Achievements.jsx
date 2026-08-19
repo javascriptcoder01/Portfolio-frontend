@@ -1,13 +1,13 @@
 import React from "react";
 import PageContainer from "../../layouts/PageContainer";
-import SimpleCrudPage from "../../crud/CrudPage";
+
 
 
 
 const Achievements = () => (
     <PageContainer title="Achievements">
 
-        <SimpleCrudPage
+        {/* <SimpleCrudPage
             title="Achievements"
             description="Manage your professional achievements."
             endpoint="/api/portfolio/achievements"
@@ -43,7 +43,8 @@ const Achievements = () => (
                     name: "url",
                 },
             ]}
-        />
+        /> */}
+        <h1>This is Achievement page</h1>
 
     </PageContainer>
 );

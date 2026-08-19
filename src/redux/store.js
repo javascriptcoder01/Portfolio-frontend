@@ -4,6 +4,9 @@ import createSagaMiddleware from "redux-saga";
 import authReducer from "./slices/authSlice";
 import introductionReducer from './slices/introductionSlice';
 import aboutReducer from './slices/aboutSlice';
+import contactReducer from './slices/contactSlice';
+import skillReducer from './slices/skillSlice';
+import experienceReducer from './slices/experienceSlice';
 
 
 // STEP 1: Create Saga Middleware Object
@@ -15,6 +18,9 @@ export const store = configureStore({
         auth: authReducer,
         introduction: introductionReducer,
         about: aboutReducer,
+        contact: contactReducer,
+        skill: skillReducer,
+        experience: experienceReducer,
 
     },
     middleware: (getDefaultMiddleware) =>

@@ -1,72 +1,16 @@
 import React, { useState } from "react";
 import PageContainer from "../../layouts/PageContainer";
-import CrudPage from "../../crud/CrudPage";
-import FormField from "../../crud/FormField";
+
 
 
 const Projects = () => {
 
-    const [items, setItems] = useState([]);
 
-    const create = async (data) => {
-        // POST /api/portfolio/projects
-
-        setItems([
-            ...items,
-            {
-                ...data,
-                id: Date.now(),
-            },
-        ]);
-    };
-
-    const update = async (id, data) => {
-        // PUT /api/portfolio/projects/:id
-
-        setItems(
-            items.map((item) =>
-                item.id === id
-                    ? { ...item, ...data }
-                    : item
-            )
-        );
-    };
-
-    const remove = async (id) => {
-
-        if (!confirm("Delete this project?")) return;
-
-        // DELETE /api/portfolio/projects/:id
-
-        setItems(items.filter((item) => item.id !== id));
-    };
 
     return (
         <PageContainer title="Projects / Work">
 
-            <CrudPage
-                title="Projects / Work"
-                description="Manage your projects and professional work."
-                data={items}
-
-                columns={[
-                    { key: "title", label: "Project" },
-                    { key: "role", label: "Role" },
-                    { key: "technologies", label: "Technologies" },
-                ]}
-
-                onCreate={create}
-                onUpdate={update}
-                onDelete={remove}
-
-                renderForm={({ item, onSubmit, onCancel }) => (
-                    <ProjectForm
-                        initialData={item}
-                        onSubmit={onSubmit}
-                        onCancel={onCancel}
-                    />
-                )}
-            />
+            <h1>This is Project page</h1>
 
         </PageContainer>
     );

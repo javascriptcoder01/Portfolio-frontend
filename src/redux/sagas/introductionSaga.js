@@ -50,6 +50,9 @@ function* updateIntroductionWorker(action) {
         const { id, data } = action.payload; // Find id, data from action Data
         const response = yield call(API_ENDPOINTS.INTRODUCTION.UPDATE, id, data);
         yield put(updateIntroductionSuccess(response.data.data));
+
+        yield put(fetchActiveIntroductionRequest());
+
     } catch (error) {
         yield put(updateIntroductionFailure(error.response?.data?.message || 'Failed to update introduction'));
     }
@@ -61,6 +64,9 @@ function* deleteIntroductionWorker(action) {
         const id = action.payload;  // Find Id from action data
         yield call(API_ENDPOINTS.INTRODUCTION.DELETE, id);
         yield put(deleteIntroductionSuccess(id));
+
+        yield put(fetchIntroductionsRequest());
+
     } catch (error) {
         yield put(deleteIntroductionFailure(error.response?.data?.message || 'Failed to delete introduction'));
     }
@@ -76,6 +82,7 @@ function* statusIntroductionWorker(action) {
         // FIX: status change hote hi active introduction dobara fetch karo
         // taaki upar ka form turant naye active data se update ho jaye
         if (isActive === true) yield put(fetchActiveIntroductionRequest());
+
     } catch (error) {
         yield put(statusIntroductionFailure(error.response?.data?.message || 'Failed to update status'));
     }

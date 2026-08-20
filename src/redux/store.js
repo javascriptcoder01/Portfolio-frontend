@@ -7,6 +7,8 @@ import aboutReducer from './slices/aboutSlice';
 import contactReducer from './slices/contactSlice';
 import skillReducer from './slices/skillSlice';
 import experienceReducer from './slices/experienceSlice';
+import projectReducer from './slices/projectSlice';
+import educationReducer from './slices/educationSlice';
 
 
 // STEP 1: Create Saga Middleware Object
@@ -21,6 +23,8 @@ export const store = configureStore({
         contact: contactReducer,
         skill: skillReducer,
         experience: experienceReducer,
+        project: projectReducer,
+        education: educationReducer,
 
     },
     middleware: (getDefaultMiddleware) =>

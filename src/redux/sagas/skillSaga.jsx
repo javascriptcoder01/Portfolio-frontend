@@ -80,6 +80,9 @@ function* updateSkillWorker(action) {
         const { id, data } = action.payload;
         const response = yield call(API_ENDPOINTS.SKILLS.UPDATE, id, data);
         yield put(updateSkillSuccess(response.data.data));
+
+        yield put(fetchActiveSkillsRequest());
+
     } catch (error) {
         yield put(updateSkillFailure(error.response?.data?.message || "Failed to update skill"));
     }
@@ -101,13 +104,10 @@ function* statusSkillWorker(action) {
     try {
         const { id, isActive } = action.payload;
         const response = yield call(API_ENDPOINTS.SKILLS.STATUS, id, isActive);
+        yield put(statusSkillSuccess(response.data.data));
+        // FIX: true / false any condition will show next / prev
+        yield put(fetchActiveSkillsRequest());
 
-        // FIX: agar backend poora object na de, khud construct karo
-        const updatedData = response.data.data?._id
-            ? response.data.data
-            : { _id: id, isActive };
-
-        yield put(statusSkillSuccess(updatedData));
     } catch (error) {
         yield put(statusSkillFailure(error.response?.data?.message || "Failed to update status"));
     }

@@ -60,6 +60,28 @@ export const API_ENDPOINTS = {
         GET_ALL: () => axiosInstance.get('/api/experience'),
         GET_ACTIVE: () => axiosInstance.get('/api/experience/active'),
         GET_ONE: (id) => axiosInstance.get(`/api/experience/${id}`),
+    },
+    // EXPERIENCE
+    PROJECT: {
+        CREATE: (data) => axiosInstance.post('/api/project/create', data),
+        UPDATE: (id, data) => axiosInstance.put(`/api/project/update/${id}`, data),
+        DELETE: (id) => axiosInstance.delete(`/api/project/delete/${id}`),
+        STATUS: (id, isActive) => axiosInstance.patch(`/api/project/${id}/status`, { isActive }),
+        GET_ALL: () => axiosInstance.get('/api/project'),
+        GET_ACTIVE: () => axiosInstance.get('/api/project/active'),
+        GET_ONE: (id) => axiosInstance.get(`/api/project/${id}`),
+        UPLOAD: (id) => axiosInstance.put(`/api/project/${id}/project-image`)
+    },
+    // EXPERIENCE
+    EDUCATION: {
+        CREATE: (data) => axiosInstance.post('/api/education/create', data),
+        UPDATE: (id, data) => axiosInstance.put(`/api/education/update/${id}`, data),
+        DELETE: (id) => axiosInstance.delete(`/api/education/delete/${id}`),
+        STATUS: (id, isActive) => axiosInstance.patch(`/api/education/${id}/status`, { isActive }),
+        GET_ALL: () => axiosInstance.get('/api/education'),
+        GET_ACTIVE: () => axiosInstance.get('/api/education/active'),
+        GET_ONE: (id) => axiosInstance.get(`/api/education/${id}`),
+        UPLOAD: (id) => axiosInstance.put(`/api/education/${id}/education-image`)
     }
 
 };

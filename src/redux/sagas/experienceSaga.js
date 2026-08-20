@@ -76,6 +76,9 @@ function* updateExperienceWorker(action) {
         const { id, data } = action.payload;
         const response = yield call(API_ENDPOINTS.EXPERIENCE.UPDATE, id, data);
         yield put(updateExperienceSuccess(response.data.data));
+
+        yield put(fetchActiveExperiencesRequest());
+
     } catch (error) {
         yield put(updateExperienceFailure(error.response?.data?.message || "Failed to update experience"));
     }
@@ -98,12 +101,11 @@ function* statusExperienceWorker(action) {
         const { id, isActive } = action.payload;
         const response = yield call(API_ENDPOINTS.EXPERIENCE.STATUS, id, isActive);
 
-        // FIX: agar backend poora object na de, khud construct karo
-        const updatedData = response.data.data?._id
-            ? response.data.data
-            : { _id: id, isActive };
+        yield put(statusExperienceSuccess(response.data.data));
 
-        yield put(statusExperienceSuccess(updatedData));
+        // FIX: true / false any condition will show next / prev
+        yield put(fetchActiveExperiencesRequest());
+
     } catch (error) {
         yield put(statusExperienceFailure(error.response?.data?.message || "Failed to update status"));
     }

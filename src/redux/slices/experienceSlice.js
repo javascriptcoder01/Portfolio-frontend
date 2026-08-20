@@ -108,6 +108,7 @@ const experienceSlice = createSlice({
 
             const index = state.experiences.findIndex((item) => item._id === updatedItem._id);
             if (index !== -1) state.experiences[index] = updatedItem;
+
         },
         statusExperienceFailure: (state, action) => {
             state.actionLoading = false;

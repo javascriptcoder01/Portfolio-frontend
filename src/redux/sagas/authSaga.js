@@ -7,7 +7,10 @@ import {
     loginSuccess,
     logoutRequest,
     logoutSuccess,
-    logoutFailure, // FIX: import missing tha
+    logoutFailure,
+    fetchAdminSuccess,
+    fetchAdminFailure,
+    fetchAdminRequest, // FIX: import missing tha
 } from "../slices/authSlice";
 
 // Login Worker saga
@@ -36,7 +39,24 @@ function* logoutWorker() {
     }
 }
 
+// GET - ADMIN / USER
+function* fetchAdminWorker() {
+    try {
+        const response = yield call(API_ENDPOINTS.ADMIN);
+
+        const adminData = Array.isArray(response.data.data) ? response.data.data[0] : response.data.data;
+
+        // console.log('Data coming from Auth Saga File: ', adminData);
+
+        yield put(fetchAdminSuccess(adminData));
+
+    } catch (error) {
+        yield put(fetchAdminFailure(error.response?.data?.message || 'Failed to fetch admin'));
+    }
+}
+
 export default function* authSaga() {
     yield takeLatest(loginRequest.type, loginWorker);
     yield takeLatest(logoutRequest.type, logoutWorker);
+    yield takeLatest(fetchAdminRequest.type, fetchAdminWorker);
 }

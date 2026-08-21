@@ -3,46 +3,47 @@ import { Plus, Save, X, ChevronLeft, ChevronRight } from "lucide-react";
 import PageContainer from "../../layouts/PageContainer";
 import FormField from "../../crud/FormField";
 import { useDispatch, useSelector } from "react-redux";
-import { createServiceRequest, fetchActiveServicesRequest, updateServiceRequest } from "../../../redux/slices/serviceSlice";
-import ServiceList from "./ServiceList";
-
+import {
+    createHobbyRequest,
+    fetchActiveHobbiesRequest,
+    updateHobbyRequest,
+} from "../../../redux/slices/hobbySlice";
+import HobbyList from "./HobbyList";
 
 const initialState = {
-    title: "",
-    description: "",
+    name: "",
     icon: "",
-    image: "",
+    description: "",
     order: 0,
     isActive: true,
 };
 
-const Service = () => {
+const Hobby = () => {
     const dispatch = useDispatch();
-    const { activeServices, loading, actionLoading, error } = useSelector((state) => state.service);
+    const { activeHobbies, loading, actionLoading, error } = useSelector((state) => state.hobby);
 
     const [mode, setMode] = useState("view"); // "view" | "create" | "edit"
     const [form, setForm] = useState(initialState);
     const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
-        dispatch(fetchActiveServicesRequest());
+        dispatch(fetchActiveHobbiesRequest());
     }, [dispatch]);
 
     useEffect(() => {
-        if (activeServices.length > 0 && currentIndex >= activeServices.length) {
-            setCurrentIndex(activeServices.length - 1);
+        if (activeHobbies.length > 0 && currentIndex >= activeHobbies.length) {
+            setCurrentIndex(activeHobbies.length - 1);
         }
-    }, [activeServices, currentIndex]);
+    }, [activeHobbies, currentIndex]);
 
-    const active = activeServices?.[currentIndex];
+    const active = activeHobbies?.[currentIndex];
 
     useEffect(() => {
         if (active && mode !== "create") {
             setForm({
-                title: active.title || "",
-                description: active.description || "",
+                name: active.name || "",
                 icon: active.icon || "",
-                image: active.image || "",
+                description: active.description || "",
                 order: active.order ?? 0,
                 isActive: active.isActive ?? true,
             });
@@ -78,9 +79,9 @@ const Service = () => {
         e.preventDefault();
 
         if (mode === "create") {
-            dispatch(createServiceRequest(form));
+            dispatch(createHobbyRequest(form));
         } else if (mode === "edit" && active?._id) {
-            dispatch(updateServiceRequest({ id: active._id, data: form }));
+            dispatch(updateHobbyRequest({ id: active._id, data: form }));
         }
 
         setMode("view");
@@ -88,20 +89,20 @@ const Service = () => {
 
     const handlePrev = () => {
         setMode("view");
-        setCurrentIndex((prev) => (prev === 0 ? activeServices.length - 1 : prev - 1));
+        setCurrentIndex((prev) => (prev === 0 ? activeHobbies.length - 1 : prev - 1));
     };
 
     const handleNext = () => {
         setMode("view");
-        setCurrentIndex((prev) => (prev === activeServices.length - 1 ? 0 : prev + 1));
+        setCurrentIndex((prev) => (prev === activeHobbies.length - 1 ? 0 : prev + 1));
     };
 
     const isFieldEnabled = mode === "edit" || mode === "create";
-    const showNavigation = activeServices.length > 1;
+    const showNavigation = activeHobbies.length > 1;
 
     return (
-        <PageContainer title="Services">
-            <ServiceList />
+        <PageContainer title="Interests & Hobbies">
+            <HobbyList />
 
             <div className="flex justify-end mb-6 gap-2">
                 <button
@@ -116,16 +117,16 @@ const Service = () => {
 
             {error && <p className="text-red-500 mb-4">{error}</p>}
 
-            {activeServices.length === 0 && mode !== "create" ? (
+            {activeHobbies.length === 0 && mode !== "create" ? (
                 <div className="text-center text-gray-500 py-8 border rounded-xl mb-6">
-                    No active service selected
+                    No active hobby selected
                 </div>
             ) : (
                 <div className="relative border rounded-xl p-5 mb-6">
-                    {mode !== "create" && activeServices.length > 0 && (
+                    {mode !== "create" && activeHobbies.length > 0 && (
                         <div className="flex justify-between items-center mb-4">
                             <span className="text-sm text-gray-500">
-                                Service {currentIndex + 1} of {activeServices.length}
+                                Hobby {currentIndex + 1} of {activeHobbies.length}
                             </span>
                             <button
                                 type="button"
@@ -140,12 +141,20 @@ const Service = () => {
 
                     <form onSubmit={handleSubmit} className="space-y-5">
                         <FormField
-                            label="Title"
-                            name="title"
-                            value={form.title}
+                            label="Hobby Name"
+                            name="name"
+                            value={form.name}
                             onChange={handleChange}
                             disabled={!isFieldEnabled}
                             required
+                        />
+
+                        <FormField
+                            label="Icon (name or URL)"
+                            name="icon"
+                            value={form.icon}
+                            onChange={handleChange}
+                            disabled={!isFieldEnabled}
                         />
 
                         <FormField
@@ -155,25 +164,7 @@ const Service = () => {
                             value={form.description}
                             onChange={handleChange}
                             disabled={!isFieldEnabled}
-                            required
                         />
-
-                        <div className="grid md:grid-cols-2 gap-5">
-                            <FormField
-                                label="Icon (name or URL)"
-                                name="icon"
-                                value={form.icon}
-                                onChange={handleChange}
-                                disabled={!isFieldEnabled}
-                            />
-                            <FormField
-                                label="Image URL"
-                                name="image"
-                                value={form.image}
-                                onChange={handleChange}
-                                disabled={!isFieldEnabled}
-                            />
-                        </div>
 
                         <FormField
                             label="Order"
@@ -224,4 +215,4 @@ const Service = () => {
     );
 };
 
-export default Service;
+export default Hobby;

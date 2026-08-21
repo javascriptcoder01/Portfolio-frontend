@@ -9,6 +9,10 @@ import skillReducer from './slices/skillSlice';
 import experienceReducer from './slices/experienceSlice';
 import projectReducer from './slices/projectSlice';
 import educationReducer from './slices/educationSlice';
+import serviceReducer from './slices/serviceSlice';
+import testimonialReducer from './slices/testimonialSlice';
+import langaugeReducer from './slices/languageSlice';
+import hobbyReducer from './slices/hobbySlice';
 
 
 // STEP 1: Create Saga Middleware Object
@@ -25,6 +29,11 @@ export const store = configureStore({
         experience: experienceReducer,
         project: projectReducer,
         education: educationReducer,
+        service: serviceReducer,
+        testimonial: testimonialReducer,
+        language: langaugeReducer,
+        hobby: hobbyReducer,
+        // Add More Reducers
 
     },
     middleware: (getDefaultMiddleware) =>

@@ -201,7 +201,7 @@ const Sidebar = ({
             <div className="flex items-center justify-between p-4 border-b shrink-0">
                 {showText && (
                     <h1 className="font-bold text-2xl text-indigo-600 whitespace-nowrap">
-                        Sidebar
+                        Portfolio
                     </h1>
                 )}
 

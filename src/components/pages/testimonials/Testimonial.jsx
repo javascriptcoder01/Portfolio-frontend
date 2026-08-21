@@ -3,46 +3,53 @@ import { Plus, Save, X, ChevronLeft, ChevronRight } from "lucide-react";
 import PageContainer from "../../layouts/PageContainer";
 import FormField from "../../crud/FormField";
 import { useDispatch, useSelector } from "react-redux";
-import { createServiceRequest, fetchActiveServicesRequest, updateServiceRequest } from "../../../redux/slices/serviceSlice";
-import ServiceList from "./ServiceList";
-
+import {
+    createTestimonialRequest,
+    fetchActiveTestimonialsRequest,
+    updateTestimonialRequest,
+} from "../../../redux/slices/testimonialSlice";
+import TestimonialList from "./TestimonialList";
 
 const initialState = {
-    title: "",
-    description: "",
-    icon: "",
+    name: "",
+    message: "",
+    designation: "",
+    company: "",
     image: "",
+    rating: 5,
     order: 0,
     isActive: true,
 };
 
-const Service = () => {
+const Testimonial = () => {
     const dispatch = useDispatch();
-    const { activeServices, loading, actionLoading, error } = useSelector((state) => state.service);
+    const { activeTestimonials, loading, actionLoading, error } = useSelector((state) => state.testimonial);
 
     const [mode, setMode] = useState("view"); // "view" | "create" | "edit"
     const [form, setForm] = useState(initialState);
     const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
-        dispatch(fetchActiveServicesRequest());
+        dispatch(fetchActiveTestimonialsRequest());
     }, [dispatch]);
 
     useEffect(() => {
-        if (activeServices.length > 0 && currentIndex >= activeServices.length) {
-            setCurrentIndex(activeServices.length - 1);
+        if (activeTestimonials.length > 0 && currentIndex >= activeTestimonials.length) {
+            setCurrentIndex(activeTestimonials.length - 1);
         }
-    }, [activeServices, currentIndex]);
+    }, [activeTestimonials, currentIndex]);
 
-    const active = activeServices?.[currentIndex];
+    const active = activeTestimonials?.[currentIndex];
 
     useEffect(() => {
         if (active && mode !== "create") {
             setForm({
-                title: active.title || "",
-                description: active.description || "",
-                icon: active.icon || "",
+                name: active.name || "",
+                message: active.message || "",
+                designation: active.designation || "",
+                company: active.company || "",
                 image: active.image || "",
+                rating: active.rating ?? 5,
                 order: active.order ?? 0,
                 isActive: active.isActive ?? true,
             });
@@ -53,7 +60,7 @@ const Service = () => {
         const { name, value } = e.target;
         setForm({
             ...form,
-            [name]: name === "order" ? Number(value) : value,
+            [name]: ["rating", "order"].includes(name) ? Number(value) : value,
         });
     };
 
@@ -78,9 +85,9 @@ const Service = () => {
         e.preventDefault();
 
         if (mode === "create") {
-            dispatch(createServiceRequest(form));
+            dispatch(createTestimonialRequest(form));
         } else if (mode === "edit" && active?._id) {
-            dispatch(updateServiceRequest({ id: active._id, data: form }));
+            dispatch(updateTestimonialRequest({ id: active._id, data: form }));
         }
 
         setMode("view");
@@ -88,20 +95,20 @@ const Service = () => {
 
     const handlePrev = () => {
         setMode("view");
-        setCurrentIndex((prev) => (prev === 0 ? activeServices.length - 1 : prev - 1));
+        setCurrentIndex((prev) => (prev === 0 ? activeTestimonials.length - 1 : prev - 1));
     };
 
     const handleNext = () => {
         setMode("view");
-        setCurrentIndex((prev) => (prev === activeServices.length - 1 ? 0 : prev + 1));
+        setCurrentIndex((prev) => (prev === activeTestimonials.length - 1 ? 0 : prev + 1));
     };
 
     const isFieldEnabled = mode === "edit" || mode === "create";
-    const showNavigation = activeServices.length > 1;
+    const showNavigation = activeTestimonials.length > 1;
 
     return (
-        <PageContainer title="Services">
-            <ServiceList />
+        <PageContainer title="Testimonials">
+            <TestimonialList />
 
             <div className="flex justify-end mb-6 gap-2">
                 <button
@@ -116,16 +123,16 @@ const Service = () => {
 
             {error && <p className="text-red-500 mb-4">{error}</p>}
 
-            {activeServices.length === 0 && mode !== "create" ? (
+            {activeTestimonials.length === 0 && mode !== "create" ? (
                 <div className="text-center text-gray-500 py-8 border rounded-xl mb-6">
-                    No active service selected
+                    No active testimonial selected
                 </div>
             ) : (
                 <div className="relative border rounded-xl p-5 mb-6">
-                    {mode !== "create" && activeServices.length > 0 && (
+                    {mode !== "create" && activeTestimonials.length > 0 && (
                         <div className="flex justify-between items-center mb-4">
                             <span className="text-sm text-gray-500">
-                                Service {currentIndex + 1} of {activeServices.length}
+                                Testimonial {currentIndex + 1} of {activeTestimonials.length}
                             </span>
                             <button
                                 type="button"
@@ -139,30 +146,29 @@ const Service = () => {
                     )}
 
                     <form onSubmit={handleSubmit} className="space-y-5">
-                        <FormField
-                            label="Title"
-                            name="title"
-                            value={form.title}
-                            onChange={handleChange}
-                            disabled={!isFieldEnabled}
-                            required
-                        />
-
-                        <FormField
-                            label="Description"
-                            name="description"
-                            type="textarea"
-                            value={form.description}
-                            onChange={handleChange}
-                            disabled={!isFieldEnabled}
-                            required
-                        />
+                        <div className="grid md:grid-cols-2 gap-5">
+                            <FormField
+                                label="Name"
+                                name="name"
+                                value={form.name}
+                                onChange={handleChange}
+                                disabled={!isFieldEnabled}
+                                required
+                            />
+                            <FormField
+                                label="Designation"
+                                name="designation"
+                                value={form.designation}
+                                onChange={handleChange}
+                                disabled={!isFieldEnabled}
+                            />
+                        </div>
 
                         <div className="grid md:grid-cols-2 gap-5">
                             <FormField
-                                label="Icon (name or URL)"
-                                name="icon"
-                                value={form.icon}
+                                label="Company"
+                                name="company"
+                                value={form.company}
                                 onChange={handleChange}
                                 disabled={!isFieldEnabled}
                             />
@@ -176,13 +182,33 @@ const Service = () => {
                         </div>
 
                         <FormField
-                            label="Order"
-                            name="order"
-                            type="number"
-                            value={form.order}
+                            label="Message"
+                            name="message"
+                            type="textarea"
+                            value={form.message}
                             onChange={handleChange}
                             disabled={!isFieldEnabled}
+                            required
                         />
+
+                        <div className="grid md:grid-cols-2 gap-5">
+                            <FormField
+                                label="Rating (1-5)"
+                                name="rating"
+                                type="number"
+                                value={form.rating}
+                                onChange={handleChange}
+                                disabled={!isFieldEnabled}
+                            />
+                            <FormField
+                                label="Order"
+                                name="order"
+                                type="number"
+                                value={form.order}
+                                onChange={handleChange}
+                                disabled={!isFieldEnabled}
+                            />
+                        </div>
 
                         {isFieldEnabled && (
                             <div className="flex justify-end pt-4 border-t">
@@ -224,4 +250,4 @@ const Service = () => {
     );
 };
 
-export default Service;
+export default Testimonial;

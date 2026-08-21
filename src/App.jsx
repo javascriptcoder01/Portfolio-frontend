@@ -15,10 +15,10 @@ import Education from './components/pages/education/Education';
 import Achievements from './components/pages/achievement/Achievements';
 import Awards from './components/pages/awards/Awards';
 import Services from './components/pages/services/Services';
-import Testimonials from './components/pages/testimonials/Testimonials';
+import Testimonial from './components/pages/testimonials/Testimonial';
 import Publications from './components/pages/publications/Publications';
 import Events from './components/pages/events/Events';
-import Hobbies from './components/pages/hobbies/Hobbies';
+import Hobby from './components/pages/hobbies/Hobby';
 import Languages from './components/pages/languages/Languages';
 import Resumes from './components/pages/resumes/Resumes';
 
@@ -46,11 +46,11 @@ function App() {
         <Route path="/achievements" element={<Achievements />} />
         <Route path="/awards" element={<Awards />} />
         <Route path="/services" element={<Services />} />
-        <Route path="/testimonials" element={<Testimonials />} />
+        <Route path="/testimonials" element={<Testimonial />} />
         <Route path="/publications" element={<Publications />} />
         <Route path="/talks-events" element={<Events />} />
         <Route path="/languages" element={<Languages />} />
-        <Route path="/interests" element={<Hobbies />} />
+        <Route path="/interests" element={<Hobby />} />
         <Route path="/resume" element={<Resumes />} />
       </Route>
     </Routes>

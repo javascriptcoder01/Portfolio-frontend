@@ -5,8 +5,12 @@ import aboutSaga from "./aboutSaga";
 import contactSaga from "./contactSaga";
 import skillSaga from './skillSaga';
 import experienceSaga from './experienceSaga';
-import projectSata from './projectSaga';
+import projectSaga from './projectSaga';
 import educationSaga from './educationSaga';
+import serviceSaga from './serviceSaga';
+import testimonialSaga from './testimonialSaga';
+import languageSaga from './languageSaga';
+import hobbySaga from './hobbySaga';
 
 
 export default function* rootSaga() {
@@ -17,8 +21,12 @@ export default function* rootSaga() {
         contactSaga(),
         skillSaga(),
         experienceSaga(),
-        projectSata(),
+        projectSaga(),
         educationSaga(),
+        serviceSaga(),
+        testimonialSaga(),
+        languageSaga(),
+        hobbySaga(),
         // aur sagas yahan add karo jaise: userSaga(), authSaga()
     ]);
 };

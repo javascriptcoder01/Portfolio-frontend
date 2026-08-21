@@ -18,7 +18,7 @@ const authSlice = createSlice({
         loginSuccess: (state, action) => {
             state.loading = false;
             state.isAuthenticated = true;
-            state.data = action.payload;
+            state.user = action.payload;
         },
         loginFailure: (state, action) => {
             state.loading = false;
@@ -39,6 +39,18 @@ const authSlice = createSlice({
             state.logoutLoading = false;
             state.user = null;
             state.isAuthenticated = false;
+        },
+        fetchAdminRequest: (state) => {
+            state.loading = true;
+            state.error = null;
+        },
+        fetchAdminSuccess: (state, action) => {
+            state.loading = false;
+            state.user = action.payload;
+        },
+        fetchAdminFailure: (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
         }
     },
 });
@@ -50,6 +62,10 @@ export const {
     logoutRequest,
     logoutSuccess,
     logoutFailure,
+
+    fetchAdminRequest,
+    fetchAdminSuccess,
+    fetchAdminFailure,
 } = authSlice.actions;
 
 export default authSlice.reducer;
